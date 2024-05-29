@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-    <groupId>com.ruoyi</groupId>
-    <artifactId>ruoyi</artifactId>
+    <groupId>com.yy</groupId>
+    <artifactId>graduateStudent</artifactId>
     <version>3.8.7</version>
 
-    <name>ruoyi</name>
+    <name>graduateStudent</name>
     <url>http://www.ruoyi.vip</url>
-    <description>若依管理系统</description>
+    <description>研究生辅助科研管理系统</description>
     
     <properties>
-        <ruoyi.version>3.8.7</ruoyi.version>
+        <graduateStudent.version>3.8.7</graduateStudent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -129,49 +129,49 @@
 
             <!-- 定时任务-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-quartz</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.yy</groupId>
+                <artifactId>graduateStudent-quartz</artifactId>
+                <version>${graduateStudent.version}</version>
             </dependency>
 
             <!-- 代码生成-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-generator</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.yy</groupId>
+                <artifactId>graduateStudent-generator</artifactId>
+                <version>${graduateStudent.version}</version>
             </dependency>
 
             <!-- 核心模块-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-framework</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.yy</groupId>
+                <artifactId>graduateStudent-framework</artifactId>
+                <version>${graduateStudent.version}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-system</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.yy</groupId>
+                <artifactId>graduateStudent-system</artifactId>
+                <version>${graduateStudent.version}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-common</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.yy</groupId>
+                <artifactId>graduateStudent-common</artifactId>
+                <version>${graduateStudent.version}</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
 
     <modules>
-        <module>ruoyi-admin</module>
-        <module>ruoyi-framework</module>
-        <module>ruoyi-system</module>
-        <module>ruoyi-quartz</module>
-        <module>ruoyi-generator</module>
-        <module>ruoyi-common</module>
+        <module>graduateStudent-admin</module>
+        <module>graduateStudent-framework</module>
+        <module>graduateStudent-system</module>
+        <module>graduateStudent-quartz</module>
+        <module>graduateStudent-generator</module>
+        <module>graduateStudent-common</module>
     </modules>
     <packaging>pom</packaging>
 
