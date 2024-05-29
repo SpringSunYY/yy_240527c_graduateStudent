@@ -60,6 +60,10 @@
             <groupId>com.yy</groupId>
             <artifactId>graduateStudent-generator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.yy</groupId>
+            <artifactId>graduateStudent-manage</artifactId>
+        </dependency>
 
     </dependencies>
 

@@ -201,6 +201,12 @@ public class SysRoleController extends BaseController
         return getDataTable(list);
     }
 
+    @GetMapping("/authUser/allocatedListAll")
+    public TableDataInfo allocatedListAll(SysUser user) {
+        List<SysUser> list = userService.selectAllocatedList(user);
+        return getDataTable(list);
+    }
+
     /**
      * 查询未分配用户角色列表
      */

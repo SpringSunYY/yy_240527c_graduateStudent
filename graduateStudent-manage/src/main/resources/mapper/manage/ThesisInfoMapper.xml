@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.manage.mapper.ThesisInfoMapper">
+
+    <resultMap type="ThesisInfo" id="ThesisInfoResult">
+        <result property="id"    column="id"    />
+        <result property="journal"    column="journal"    />
+        <result property="title"    column="title"    />
+        <result property="type"    column="type"    />
+        <result property="thesisNumber"    column="thesis_number"    />
+        <result property="tutorType"    column="tutor_type"    />
+        <result property="userId"    column="user_id"    />
+        <result property="publishTime"    column="publish_time"    />
+        <result property="publishLevel"    column="publish_level"    />
+        <result property="relyProject"    column="rely_project"    />
+        <result property="file"    column="file"    />
+        <result property="pageNumber"    column="page_number"    />
+        <result property="remark"    column="remark"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectThesisInfoVo">
+        select id, journal, title, type, thesis_number, tutor_type, user_id, publish_time, publish_level, rely_project, file, page_number, remark, create_by, create_time, update_time from tb_thesis_info
+    </sql>
+
+    <select id="selectThesisInfoList" parameterType="ThesisInfo" resultMap="ThesisInfoResult">
+        <include refid="selectThesisInfoVo"/>
+        <where>
+            <if test="id != null "> and id = #{id}</if>
+            <if test="journal != null  and journal != ''"> and journal = #{journal}</if>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="thesisNumber != null  and thesisNumber != ''"> and thesis_number = #{thesisNumber}</if>
+            <if test="tutorType != null  and tutorType != ''"> and tutor_type = #{tutorType}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="params.beginPublishTime != null and params.beginPublishTime != '' and params.endPublishTime != null and params.endPublishTime != ''"> and publish_time between #{params.beginPublishTime} and #{params.endPublishTime}</if>
+            <if test="publishLevel != null  and publishLevel != ''"> and publish_level = #{publishLevel}</if>
+            <if test="relyProject != null  and relyProject != ''"> and rely_project = #{relyProject}</if>
+            <if test="pageNumber != null  and pageNumber != ''"> and page_number = #{pageNumber}</if>
+            <if test="createBy != null  and createBy != ''"> and create_by like concat('%', #{createBy}, '%')</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+            <if test="params.beginUpdateTime != null and params.beginUpdateTime != '' and params.endUpdateTime != null and params.endUpdateTime != ''"> and update_time between #{params.beginUpdateTime} and #{params.endUpdateTime}</if>
+            <!-- 数据范围过滤 -->
+            ${params.dataScope}
+        </where>
+    </select>
+
+    <select id="selectThesisInfoById" parameterType="Long" resultMap="ThesisInfoResult">
+        <include refid="selectThesisInfoVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertThesisInfo" parameterType="ThesisInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_thesis_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="journal != null and journal != ''">journal,</if>
+            <if test="title != null and title != ''">title,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="thesisNumber != null and thesisNumber != ''">thesis_number,</if>
+            <if test="tutorType != null and tutorType != ''">tutor_type,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="publishTime != null">publish_time,</if>
+            <if test="publishLevel != null and publishLevel != ''">publish_level,</if>
+            <if test="relyProject != null">rely_project,</if>
+            <if test="file != null">file,</if>
+            <if test="pageNumber != null and pageNumber != ''">page_number,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createBy != null and createBy != ''">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="journal != null and journal != ''">#{journal},</if>
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="thesisNumber != null and thesisNumber != ''">#{thesisNumber},</if>
+            <if test="tutorType != null and tutorType != ''">#{tutorType},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="publishTime != null">#{publishTime},</if>
+            <if test="publishLevel != null and publishLevel != ''">#{publishLevel},</if>
+            <if test="relyProject != null">#{relyProject},</if>
+            <if test="file != null">#{file},</if>
+            <if test="pageNumber != null and pageNumber != ''">#{pageNumber},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createBy != null and createBy != ''">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateThesisInfo" parameterType="ThesisInfo">
+        update tb_thesis_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="journal != null and journal != ''">journal = #{journal},</if>
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="thesisNumber != null and thesisNumber != ''">thesis_number = #{thesisNumber},</if>
+            <if test="tutorType != null and tutorType != ''">tutor_type = #{tutorType},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="publishTime != null">publish_time = #{publishTime},</if>
+            <if test="publishLevel != null and publishLevel != ''">publish_level = #{publishLevel},</if>
+            <if test="relyProject != null">rely_project = #{relyProject},</if>
+            <if test="file != null">file = #{file},</if>
+            <if test="pageNumber != null and pageNumber != ''">page_number = #{pageNumber},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createBy != null and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteThesisInfoById" parameterType="Long">
+        delete from tb_thesis_info where id = #{id}
+    </delete>
+
+    <delete id="deleteThesisInfoByIds" parameterType="String">
+        delete from tb_thesis_info where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
